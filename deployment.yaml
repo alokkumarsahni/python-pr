@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pythonapp-pr
+  labels:
+    app: pythonapp-pr
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pythonapp-pr
+  template:
+    metadata:
+      labels:
+        app: pythonapp-pr
+    spec:
+      containers:
+        - name: pythonapp-pr
+          image: aloksahni/pythonapp-pr:latest
+          ports:
+            - containerPort: 5000  # Adjust based on your app's listening port        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pythonapp-pr
+spec:
+  type: LoadBalancer
+  selector:
+    app: pythonapp-pr
+  ports:
+    - port: 5000         # Port that the service will expose
+      targetPort: 5000   # Port on the container
+      nodePort: 31010    # NodePort (optional, Kubernetes will assign one if not specified)
