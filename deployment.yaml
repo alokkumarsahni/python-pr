@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: pythonapp-pr
-          image: aloksahni/pythonapp-pr:latest
+          image: 783764619143.dkr.ecr.ap-southeast-2.amazonaws.com/ecr-2:latest
           ports:
             - containerPort: 5000  # Adjust based on your app's listening port        
 ---
